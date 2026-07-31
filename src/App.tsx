@@ -216,7 +216,7 @@ export default function App() {
         search={search}
         onSearchChange={(value) => {
           setSearch(value)
-          if (!value) setShowSearch(false)
+          setShowSearch(Boolean(value))
         }}
         onSearchFocus={() => setShowSearch(true)}
         onClearSearch={() => {
@@ -294,7 +294,13 @@ function Header({
               placeholder="搜索 key 或 value"
             />
             {search && (
-              <button type="button" className={`grid size-6 place-items-center rounded-[4px] text-[#8F8F8F] hover:bg-[#EBEBEB] hover:text-[#171717] ${focusRing}`} onClick={onClearSearch} aria-label="清除搜索">
+              <button
+                type="button"
+                className={`grid size-6 place-items-center rounded-[4px] text-[#8F8F8F] hover:bg-[#EBEBEB] hover:text-[#171717] ${focusRing}`}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={onClearSearch}
+                aria-label="清除搜索"
+              >
                 <Icon name="close" className="size-3.5" />
               </button>
             )}
